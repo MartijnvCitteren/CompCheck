@@ -11,10 +11,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Compensation {
     private int id;
-    private float salaryGross;
+    private Double salaryGross;
     private int pto;
-    private float pensionDeposit;
-    private float salaryNett;
+    private Double pensionDeposit;
+    private Double salaryNett;
     private LocalDate calculationDate;
     private int userID;
     private int companyID;

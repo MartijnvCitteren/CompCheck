@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 //using lombok instead of writing all getters and setters.
 @Data
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name= "users", schema = "public")
 public class AppUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -42,4 +44,8 @@ public class AppUser {
 
     @Column(name = "company_id")
     private int companyId;
+
+    @Column(name = "password")
+    private String password;
+
 }

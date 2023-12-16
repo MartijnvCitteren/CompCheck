@@ -81,11 +81,5 @@ public class AppUserService {
         if(companyId != null){
             appUser.setCompanyId(companyId);
         }
-
-
     }
-
-
-
-
 }
