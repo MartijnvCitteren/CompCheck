@@ -15,11 +15,7 @@ public class BenefitPackageController {
     public  BenefitPackageController(BenefitPackageService benefitPackageService) {
         this.benefitPackageService = benefitPackageService;
     }
-    @GetMapping
-    public String apiTest() {
-        BenefitPackage A = new BenefitPackage("x", "CAO", 4000.00, "monthly", 40, 1000.00, 240, 35, 120.00, 260.00, 3500.00);
-        return A.toString();
-    }
+
 
 
 

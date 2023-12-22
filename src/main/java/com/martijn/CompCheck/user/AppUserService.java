@@ -2,84 +2,131 @@ package com.martijn.CompCheck.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.ResultSet;
-import java.time.LocalDate;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class AppUserService {
 
-    private static AppUserRepository appUserRepository;
+    private final AppUserRepository appUserRepository;
 
     @Autowired
     public AppUserService(AppUserRepository appUserRepository) {
-        AppUserService.appUserRepository = appUserRepository;
+        this.appUserRepository = appUserRepository;
     }
 
-    public List<AppUser> getUsers(){
-        return  appUserRepository.findAll();
+    public List<AppUser> getAllUsers() {
+        return appUserRepository.findAll();
+    }
+
+    public Optional<AppUser> getAppUserById(Integer id) {
+        Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
+        if (optionalAppUser.isPresent()) {
+            return optionalAppUser;
+        }
+        else {
+            throw new IllegalStateException("User with ID:" + id + " doesn't exists");
+        }
     }
 
     public void addNewUser(AppUser appUser) {
+        appUser.setPassword(createHash(appUser.getPassword()));
         appUserRepository.save(appUser);
-        System.out.println(appUser);
+    }
+
+    public void updateUser(AppUser appUser) {
+        int userId = appUser.getId();
+        Optional<AppUser> optionalAppUser = appUserRepository.findById(userId);
+        if (optionalAppUser.isPresent()) {
+            AppUser oldUser = optionalAppUser.get();
+
+            if (appUser.getFirstName() != null) {
+                oldUser.setFirstName(appUser.getFirstName());
+            }
+            if (appUser.getLastName() != null) {
+                oldUser.setLastName(appUser.getLastName());
+            }
+            if (appUser.getEmail() != null) {
+                oldUser.setEmail(appUser.getEmail());
+            }
+            if (appUser.getDob() != null) {
+                oldUser.setDob(appUser.getDob());
+            }
+            if (appUser.getCity() != null) {
+                oldUser.setCity(appUser.getCity());
+            }
+            if (appUser.getYearsOfExperience() != null) {
+                oldUser.setYearsOfExperience(appUser.getYearsOfExperience());
+            }
+            if (appUser.getSalaryYearly() != null) {
+                oldUser.setSalaryYearly((appUser.getSalaryYearly()));
+            }
+            if (appUser.getCompanyId() != null) {
+                oldUser.setCompanyId(appUser.getCompanyId());
+            }
+            if (appUser.getPassword() != null) {
+                oldUser.setPassword(createHash(appUser.getPassword()));
+            }
+            appUserRepository.save(oldUser);
+        } else {
+            throw new IllegalStateException("User with ID:" + appUser.getId() + " doesn't exists");
+        }
     }
 
     public void deleteUser(Integer id) {
         boolean exists = appUserRepository.existsById(id);
-        if (exists){
+        if (exists) {
             appUserRepository.deleteById(id);
-        }
-        else{
+        } else {
             throw new IllegalStateException("User with ID :" + id + " does not exists.");
         }
     }
 
-    @Transactional
-    public void updateUser(Integer id,
-                                  String firstName,
-                                  String lastName,
-                                  String email,
-                                  LocalDate dob,
-                                  String city,
-                                  Integer yearsOfExperience,
-                                  Double salaryYearly, Integer companyId) {
-        AppUser appUser = appUserRepository.findById(id).orElseThrow(() -> new IllegalStateException(
-                "User with ID:"+ id + " doesn't exists"));
+    public String loginUser(AppUser appUser){
+        String email = appUser.getEmail();
+        String password = appUser.getPassword();
+        Optional<AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
+        if (optionalAppUser.isPresent()) {
+            AppUser appUserToLogin = optionalAppUser.get();
+            String hashOfPassword = createHash(password);
 
-        if (firstName != null) {
-            appUser.setFirstName(firstName);
+            if(hashOfPassword.equals(appUserToLogin.getPassword())) {
+                return "Login Succes!";
+            }
+            else {
+                return " WRONG password";
+            }
+        }
+        else {
+            throw new IllegalStateException("Email doesn't exists!");
         }
 
-        if(lastName != null){
-            appUser.setLastName(lastName);
-        }
-
-        if(email != null){
-            appUser.setEmail(email);
-        }
-
-        if(dob != null){
-            appUser.setDob(dob);
-        }
-
-        if(city != null){
-            appUser.setCity(city);
-        }
-
-        if(yearsOfExperience != null){
-            appUser.setYearsOfExperience(yearsOfExperience);
-        }
-
-        if(salaryYearly != null){
-            appUser.setSalaryYearly(salaryYearly);
-        }
-
-        if(companyId != null){
-            appUser.setCompanyId(companyId);
-        }
     }
+
+
+
+    public static String createHash(String password) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA");
+
+            messageDigest.update(password.getBytes());
+            byte[] resultByteArray = messageDigest.digest();
+
+            StringBuilder builder = new StringBuilder();
+
+            for (byte b : resultByteArray) {
+                builder.append(String.format("%02x", b));
+            }
+
+            return builder.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
 }

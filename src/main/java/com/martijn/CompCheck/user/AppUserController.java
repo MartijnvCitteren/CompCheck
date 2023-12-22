@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping(path="user")
+@RequestMapping(path="/user")
 public class AppUserController {
 
     private final AppUserService appUserService;
@@ -17,34 +18,36 @@ public class AppUserController {
     public AppUserController(AppUserService appUserService) {
         this.appUserService = appUserService;
     }
-    @GetMapping
-    private List<AppUser> getUsers() {
-        return appUserService.getUsers();
+    @GetMapping("/all")
+    private List<AppUser> getAllUsers() {
+        return appUserService.getAllUsers();
     }
 
-    @PostMapping
+    @GetMapping("/{id}")
+    private Optional<AppUser> getAppUser(@PathVariable Integer id) {
+        return appUserService.getAppUserById(id);
+    }
+
+    @PostMapping("/newuser")
     public void registerNewUser(@RequestBody AppUser appUser){
         appUserService.addNewUser(appUser);
     }
 
-    @DeleteMapping(path = "{userId}")
+    @PutMapping(path = "/update")
+    public void updateUser(@RequestBody AppUser appUser){
+        appUserService.updateUser(appUser);
+    }
+
+    @DeleteMapping(path = "/{userId}")
     public void deleteUSer(@PathVariable("userId") Integer id){
     appUserService.deleteUser(id);
     }
 
-    @PutMapping(path = "{id}")
-    public void updateUser(
-            @PathVariable("id") Integer id,
-            @RequestParam(required = false) String firstName,
-            @RequestParam(required = false) String lastName,
-            @RequestParam(required = false) String email,
-            @RequestParam(required = false) LocalDate dob,
-            @RequestParam(required = false) String city,
-            @RequestParam(required = false) Integer yearsOfExperience,
-            @RequestParam(required = false) Double salaryYearly,
-            @RequestParam(required = false) Integer companyId) {
-
-        appUserService.updateUser(id, firstName, lastName, email, dob, city, yearsOfExperience, salaryYearly, companyId);
+    @PutMapping("/login")
+    public String userLogin(@RequestBody AppUser appUser){
+        return appUserService.loginUser(appUser);
     }
+
+
 
 }
