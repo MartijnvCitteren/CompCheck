@@ -18,6 +18,14 @@ public class AppUserController {
     public AppUserController(AppUserService appUserService) {
         this.appUserService = appUserService;
     }
+
+    //testing Thymeleaf
+    @GetMapping("/test1")
+    public String showHelloPage() {
+        return "helloPage.html";
+    }
+
+
     @GetMapping("/all")
     private List<AppUser> getAllUsers() {
         return appUserService.getAllUsers();
