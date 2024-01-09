@@ -18,3 +18,18 @@
     color: #7d80da;
     font-weight:bold;
 }
+
+.btn-primary {
+    background-color: #7d80da;
+    border-color: #7d80da;
+}
+
+.width-date {
+    width: 13rem;
+}
+
+.btn-primary:hover{
+        background-color: #2D5C1E;
+        border-color: #7d80da;
+
+}

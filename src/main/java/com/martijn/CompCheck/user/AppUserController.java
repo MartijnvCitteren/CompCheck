@@ -19,11 +19,37 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
-    //testing Thymeleaf
-    @GetMapping("/test1")
+    //Thymeleaf controllers
+    @GetMapping("/allusers")
     public String appUsers(Model model) {
         model.addAttribute("appUser", appUserService.getAllUsers());
         return "users";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model) {
+        model.addAttribute("registrationForm", new AppUser());
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute AppUser appUser, Model model) {
+        model.addAttribute("registrationForm", new AppUser());
+        appUserService.addNewUser(appUser);
+        return "users";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("loginForm", new AppUser());
+        return "login";
+    }
+
+    // TO DO
+    @PutMapping("/login")
+    public String userLogin(@ModelAttribute AppUser appUser, Model model) {
+        model.addAttribute("loginForm");
+        return appUserService.loginUser(appUser);
     }
 
 
@@ -53,10 +79,10 @@ public class AppUserController {
     appUserService.deleteUser(id);
     }
 
-    @PutMapping("/login")
-    public String userLogin(@RequestBody AppUser appUser){
-        return appUserService.loginUser(appUser);
-    }
+//    @PutMapping("/login")
+//    public String userLogin(@RequestBody AppUser appUser){
+//        return appUserService.loginUser(appUser);
+//    }
 
 
 

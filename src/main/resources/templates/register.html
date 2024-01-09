@@ -2,26 +2,38 @@
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layoutDefault}">
 <body>
+<div layout:fragment="content">
     <div class="container py-5 text-center">
-        <form th:action="/register" th:method="post" th:object="${appUser}">
-            <div class="mb-3">
-                <input th:field="*{firstName}"autocomplete="off" autofocus="" class="form-control mx-auto w-auto" name="firstName" placeholder="Firstname" type="text">
+        <form th:action="register" th:method="post" th:object="${registrationForm}">
+            <div class="purple_text mb-4">
+                <h2>Create your account</h2>
             </div>
             <div class="mb-3">
-                <input class="form-control mx-auto w-auto" name="lastName" placeholder="Lastname" type="text">
+                <input th:field="*{firstName}" autocomplete="off" autofocus="" class="form-control mx-auto w-auto" placeholder="First name" type="text">
             </div>
             <div class="mb-3">
-                <input class="form-control mx-auto w-auto" name="city" placeholder="City" type="text">
+                <input th:field="*{lastName}" autocomplete="off" class="form-control mx-auto w-auto" placeholder="Last name" type="text">
             </div>
             <div class="mb-3">
-                <input class="form-control mx-auto w-auto" name="email" placeholder="e-mail" type="text">
+                <input th:field="*{dob}" autocomplete="off" class="form-control mx-auto width-date" placeholder="date of birth" type="date">
             </div>
             <div class="mb-3">
-                <input class="form-control mx-auto w-auto" name="email" placeholder="password" type="password">
+                <input th:field="*{city}" autocomplete="off" class="form-control mx-auto w-auto" placeholder="City" type="text">
             </div>
-            <button class="btn btn-primary" type="submit">Register</button>
+            <div class="mb-3">
+                <input th:field="*{companyId}" autocomplete="off" class="form-control mx-auto w-auto" placeholder="Company ID" type="text">
+            </div>
+            <div class="mb-3">
+                <input th:field="*{email}" autocomplete="off" class="form-control mx-auto w-auto" placeholder="E-mail" type="text">
+            </div>
+            <div class="mb-3">
+                <input th:field="*{password}" autocomplete="off" class="form-control mx-auto w-auto" placeholder="Password" type="password">
+            </div>
+            <button class="btn btn-primary submit_button" type="submit">Register</button>
         </form>
     </div>
+</div>
+
 
 
 

@@ -94,7 +94,7 @@ public class AppUserService {
             String hashOfPassword = createHash(password);
 
             if(hashOfPassword.equals(appUserToLogin.getPassword())) {
-                return "Login Succes!";
+                return "account";
             }
             else {
                 return " WRONG password";
