@@ -1,0 +1,20 @@
+.navbarNavColor{
+    background-color:#033860;
+    --navbar-text-color: #ffffff;
+}
+
+.my_footer{
+    background-color: #033860;
+    --block-text-color: white;
+}
+
+#footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.purple_text{
+    color: #7d80da;
+    font-weight:bold;
+}

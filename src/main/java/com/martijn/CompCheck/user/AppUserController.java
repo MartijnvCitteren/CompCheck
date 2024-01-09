@@ -1,14 +1,14 @@
 package com.martijn.CompCheck.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping(path="/user")
 public class AppUserController {
 
@@ -21,8 +21,9 @@ public class AppUserController {
 
     //testing Thymeleaf
     @GetMapping("/test1")
-    public String showHelloPage() {
-        return "helloPage.html";
+    public String appUsers(Model model) {
+        model.addAttribute("appUser", appUserService.getAllUsers());
+        return "users";
     }
 
 
@@ -37,8 +38,9 @@ public class AppUserController {
     }
 
     @PostMapping("/newuser")
-    public void registerNewUser(@RequestBody AppUser appUser){
+    public String registerNewUser(@RequestBody AppUser appUser){
         appUserService.addNewUser(appUser);
+        return "users";
     }
 
     @PutMapping(path = "/update")

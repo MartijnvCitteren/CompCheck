@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layoutDefault}">
+<body>
+    <div class="container py-5 text-center">
+        <form th:action="/register" th:method="post" th:object="${appUser}">
+            <div class="mb-3">
+                <input th:field="*{firstName}"autocomplete="off" autofocus="" class="form-control mx-auto w-auto" name="firstName" placeholder="Firstname" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" name="lastName" placeholder="Lastname" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" name="city" placeholder="City" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" name="email" placeholder="e-mail" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" name="email" placeholder="password" type="password">
+            </div>
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+    </div>
+
+
+
+</body>
+</html>
