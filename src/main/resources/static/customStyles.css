@@ -28,8 +28,18 @@
     width: 13rem;
 }
 
-.btn-primary:hover{
-        background-color: #2D5C1E;
-        border-color: #7d80da;
+.btn-primary:hover {
+    background-color: #2D5C1E;
+    border-color: #7d80da;
+}
 
+.extra-padding {
+    padding-top: 1rem;
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+}
+
+.outline {
+    outline: #033860;
+    border: #033860;
 }
