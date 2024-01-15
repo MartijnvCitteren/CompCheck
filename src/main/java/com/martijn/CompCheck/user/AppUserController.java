@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.WebUtils;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +38,7 @@ public class AppUserController {
     public String registerUser(@ModelAttribute AppUser appUser, Model model) {
         model.addAttribute("registrationForm", new AppUser());
         appUserService.addNewUser(appUser);
-        return "users";
+        return "redirect:/index";
     }
 
     @GetMapping("/login")
@@ -46,10 +48,19 @@ public class AppUserController {
     }
 
     // TO DO
-    @PutMapping("/login")
-    public String userLogin(@ModelAttribute AppUser appUser, Model model) {
-        model.addAttribute("loginForm");
-        return appUserService.loginUser(appUser);
+    @PutMapping( "/login")
+    public String userLogin(@ModelAttribute("loginForm") AppUser appuser,Model model) {
+        model.addAttribute("loginForm", new AppUser());
+        boolean validLogin = appUserService.loginUser(appuser.getEmail(), appuser.getPassword());
+
+        if (validLogin){
+            return "redirect:/index";
+        }
+
+        else {
+            return "redirect:/user/register";
+        }
+
     }
 
 
@@ -78,12 +89,6 @@ public class AppUserController {
     public void deleteUSer(@PathVariable("userId") Integer id){
     appUserService.deleteUser(id);
     }
-
-//    @PutMapping("/login")
-//    public String userLogin(@RequestBody AppUser appUser){
-//        return appUserService.loginUser(appUser);
-//    }
-
 
 
 }

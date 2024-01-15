@@ -85,23 +85,21 @@ public class AppUserService {
         }
     }
 
-    public String loginUser(AppUser appUser){
-        String email = appUser.getEmail();
-        String password = appUser.getPassword();
+    public Boolean loginUser(String email, String password){
         Optional<AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
         if (optionalAppUser.isPresent()) {
             AppUser appUserToLogin = optionalAppUser.get();
             String hashOfPassword = createHash(password);
 
             if(hashOfPassword.equals(appUserToLogin.getPassword())) {
-                return "account";
+                return true;
             }
             else {
-                return " WRONG password";
+                return false;
             }
         }
         else {
-            throw new IllegalStateException("Email doesn't exists!");
+            throw new IllegalStateException(String.format("Email doesn't exists!\nemail: %s \npassword: %s", email, password));
         }
 
     }

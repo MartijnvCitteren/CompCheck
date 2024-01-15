@@ -24,7 +24,27 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title text-center purple_text">Benefit Package 1</h5>
-                                <p> here comes a form</p>
+                                <form th:action="${compare}" th:method="post" th:object="${packageOne}">
+                                    <div class="mb-3">
+                                        <label class="form-label">Monthly Salary</label>
+                                        <input th:field="*{sal}" autocomplete="off"  class="form-control w-auto" placeholder="€ " type="text" aria-describedby="salaryHelp">
+                                        <div id="salaryHelp" class="form-text">Enter your monthly base salary in €</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Weekly working hours</label>
+                                        <input th:field="*{}" type="number" class="form-control w-auto" placeholder="1 - 50 hours">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Weekly working hours</label>
+                                        <input th:field="*{hoursPerWeek}" type="number" class="form-control w-auto" placeholder="1 - 50 hours">
+                                    </div>
+<!--                                    <div class="mb-3">-->
+<!--                                        <label class="form-label">Company</label>-->
+<!--                                        <select th:field="*{}">-->
+<!--                                            <option th:each="company: ${comp}"</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+                                </form>
                                 <a href="#" class="btn btn-secondary">compare</a>
                             </div>
                         </div>

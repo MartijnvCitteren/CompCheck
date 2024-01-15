@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BenefitPackageRepository extends JpaRepository <BenefitPackage, Integer> {
+
 }
