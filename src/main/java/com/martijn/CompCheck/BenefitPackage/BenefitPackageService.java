@@ -19,9 +19,7 @@ public class BenefitPackageService {
         BenefitPackageService.benefitPackageRepository = benefitPackageRepository;
     }
 
-    public List<String> getCompanyNames() {
-        List<String> companyNames = new ArrayList<>();
-        companyNames = Collections.singletonList(benefitPackageRepository.findAll().toString());
-        return companyNames;
+    public BenefitPackage generateBenefitPackageWithCao(Integer companyId, Double monthlySalary, Integer weeklyHours){
+
     }
 }

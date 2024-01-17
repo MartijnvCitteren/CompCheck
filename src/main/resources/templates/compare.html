@@ -10,20 +10,19 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-center purple_text">Start Comparing</h5>
-                        <form th:action="${package}" th:method="post" th:object="${benefitPackageForm}">
+                        <div class="center">
+                            <p>Good news we alreay know your company, we only need a few last details</p>
+                        <form th:action="${packagecao}" th:method="post" th:object="${benefitPackageForm}">
                                     <div class="mb-3">
                                         <label class="form-label">Monthly Salary</label>
                                         <input th:field="*{salaryMonthly}" autocomplete="off"  class="form-control w-auto" placeholder="€ " type="text" aria-describedby="salaryHelp">
                                         <div id="salaryHelp" class="form-text">Enter your monthly base salary in €</div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Weekly working hours</label>
+                                        <label class="form-label">How many hours is your contract per week?</label>
                                         <input th:field="*{hoursPerWeek}" type="number" class="form-control w-auto" placeholder="1 - 50 hours">
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Weekly working hours</label>
-                                        <input th:field="*{hoursPerWeek}" type="number" class="form-control w-auto" placeholder="1 - 50 hours">
-                                    </div>
+                            <button class="btn btn-primary btn-lg submit_button" type="submit">Continue</button>
                         </form>
 
                     </div>
@@ -32,7 +31,7 @@
         </div>
     </div>
     <div class=" col text-center" style="padding-top: 2rem">
-        <button class="btn btn-primary btn-lg submit_button" type="submit" onclick="submitForms()">Continue</button>
+
     </div>
 </div>
 </div>

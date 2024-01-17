@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CaoService {
@@ -16,9 +17,17 @@ public class CaoService {
         this.caoRepository = caoRepository;
     }
 
-    public List<Cao> allCaos(){
-        return caoRepository.findAll();
+    public Optional<Cao> findCaoById(Integer id){
+        Optional<Cao> optionalCao = caoRepository.findCaoById(id);
+        return optionalCao;
+//        //if(optionalCao.isPresent()){
+//
+//        }
+//        else{
+//            throw new IllegalStateException("cao ID doesn't exists");
+//        }
     }
+
 
 
 

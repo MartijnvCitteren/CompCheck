@@ -16,11 +16,5 @@ public class CaoController {
         this.caoService = caoService;
     }
 
-    @GetMapping
-    public String showAllCao(Model model){
-        caoService.allCaos();
-        return "index";
-    }
-
 
 }

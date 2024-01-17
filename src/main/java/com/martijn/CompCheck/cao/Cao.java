@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name="cao", schema ="public")
 public class Cao {
     @Id
@@ -28,7 +30,8 @@ public class Cao {
     private int PtoHoursSellable;
 
     @Column(name="bonus")
-    private float bonus;
+    @Nullable
+    private Float bonus;
 
     @Column(name="pension_total")
     private float pensionTotalPercentage;
