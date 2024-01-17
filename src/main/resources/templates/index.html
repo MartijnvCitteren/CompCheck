@@ -11,54 +11,49 @@
                         <p class="card-text">Deciding what is the best job offer can be misleading when you only
                         take your gross yearly salary into account. ComCheck compares job offers on the most relevant
                         employee perks like: number PTO days, pension, gross yearly salary and Bonuses. We normalise all
-                            these perks to make it easy to see what offer is really the best. <b>fill your job offer in
-                                below to find out.</b></p>
+                            these perks to make it easy to see what offer is really the best. Normalize a job offer below
+                            and find it your account <b>Let's make it easy to compare.</b></p>
                         <p>Wanna know what companies have the best normalized benefits? Click on the below button.</p>
                         <a href="#" class="btn btn-secondary">show best paying companies</a>
                     </div>
                 </div>
             <div style="padding-top: 3rem"></div>
             <div class="container outline">
-                <div class="row row-cols-2">
+                <div class="row row-cols-1">
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title text-center purple_text">Benefit Package 1</h5>
-                                <form th:action="${compare}" th:method="post" th:object="${packageOne}">
-                                    <div class="mb-3">
-                                        <label class="form-label">Monthly Salary</label>
-                                        <input th:field="*{sal}" autocomplete="off"  class="form-control w-auto" placeholder="€ " type="text" aria-describedby="salaryHelp">
-                                        <div id="salaryHelp" class="form-text">Enter your monthly base salary in €</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Weekly working hours</label>
-                                        <input th:field="*{}" type="number" class="form-control w-auto" placeholder="1 - 50 hours">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Weekly working hours</label>
-                                        <input th:field="*{hoursPerWeek}" type="number" class="form-control w-auto" placeholder="1 - 50 hours">
-                                    </div>
+                                <h5 class="card-title text-center purple_text">Start Comparing</h5>
+                                <form th:action="${index}" th:method="post" th:object="${selectCompany}" id="companySelect1">
 <!--                                    <div class="mb-3">-->
-<!--                                        <label class="form-label">Company</label>-->
-<!--                                        <select th:field="*{}">-->
-<!--                                            <option th:each="company: ${comp}"</option>-->
-<!--                                        </select>-->
+<!--                                        <label class="form-label">Monthly Salary</label>-->
+<!--                                        <input th:field="*{salaryMonthly}" autocomplete="off"  class="form-control w-auto" placeholder="€ " type="text" aria-describedby="salaryHelp">-->
+<!--                                        <div id="salaryHelp" class="form-text">Enter your monthly base salary in €</div>-->
 <!--                                    </div>-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label class="form-label">Weekly working hours</label>-->
+<!--                                        <input th:field="*{hoursPerWeek}" type="number" class="form-control w-auto" placeholder="1 - 50 hours">-->
+<!--                                    </div>-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label class="form-label">Weekly working hours</label>-->
+<!--                                        <input th:field="*{hoursPerWeek}" type="number" class="form-control w-auto" placeholder="1 - 50 hours">-->
+<!--                                    </div>-->
+                                        <div class="mb-3">
+                                            <label class="form-label"> pick your company </label>
+                                            <select th:field="*{name}" class="form-control">
+                                                <option value="">Select a company</option>
+                                                <option th:each="company : ${companies}" th:value="${company}" th:text="${company}"></option>
+                                            </select>
+                                        </div>
                                 </form>
-                                <a href="#" class="btn btn-secondary">compare</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title text-center purple_text">Benefit Package 2</h5>
-                                <p> here comes a form</p>
-                                <a href="#" class="btn btn-secondary">compare</a>
+
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class=" col text-center" style="padding-top: 2rem">
+                <button class="btn btn-primary btn-lg submit_button" type="submit" onclick="submitForms()">Continue</button>
             </div>
         </div>
     </div>

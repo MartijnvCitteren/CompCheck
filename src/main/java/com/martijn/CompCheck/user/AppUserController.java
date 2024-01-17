@@ -63,32 +63,32 @@ public class AppUserController {
 
     }
 
-
-    @GetMapping("/all")
-    private List<AppUser> getAllUsers() {
-        return appUserService.getAllUsers();
-    }
-
-    @GetMapping("/{id}")
-    private Optional<AppUser> getAppUser(@PathVariable Integer id) {
-        return appUserService.getAppUserById(id);
-    }
-
-    @PostMapping("/newuser")
-    public String registerNewUser(@RequestBody AppUser appUser){
-        appUserService.addNewUser(appUser);
-        return "users";
-    }
-
-    @PutMapping(path = "/update")
-    public void updateUser(@RequestBody AppUser appUser){
-        appUserService.updateUser(appUser);
-    }
-
-    @DeleteMapping(path = "/{userId}")
-    public void deleteUSer(@PathVariable("userId") Integer id){
-    appUserService.deleteUser(id);
-    }
+//
+//    @GetMapping("/all")
+//    private List<AppUser> getAllUsers() {
+//        return appUserService.getAllUsers();
+//    }
+//
+//    @GetMapping("/{id}")
+//    private Optional<AppUser> getAppUser(@PathVariable Integer id) {
+//        return appUserService.getAppUserById(id);
+//    }
+//
+//    @PostMapping("/newuser")
+//    public String registerNewUser(@RequestBody AppUser appUser){
+//        appUserService.addNewUser(appUser);
+//        return "users";
+//    }
+//
+//    @PutMapping(path = "/update")
+//    public void updateUser(@RequestBody AppUser appUser){
+//        appUserService.updateUser(appUser);
+//    }
+//
+//    @DeleteMapping(path = "/{userId}")
+//    public void deleteUSer(@PathVariable("userId") Integer id){
+//    appUserService.deleteUser(id);
+//    }
 
 
 }

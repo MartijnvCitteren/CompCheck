@@ -3,8 +3,38 @@
       layout:decorate="~{layouts/layoutDefault}">
 <body>
 <div layout:fragment="content">
+    <div style="padding-top: 3rem"></div>
+    <div class="container outline">
+        <div class="row row-cols-1">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center purple_text">Start Comparing</h5>
+                        <form th:action="${package}" th:method="post" th:object="${benefitPackageForm}">
+                                    <div class="mb-3">
+                                        <label class="form-label">Monthly Salary</label>
+                                        <input th:field="*{salaryMonthly}" autocomplete="off"  class="form-control w-auto" placeholder="€ " type="text" aria-describedby="salaryHelp">
+                                        <div id="salaryHelp" class="form-text">Enter your monthly base salary in €</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Weekly working hours</label>
+                                        <input th:field="*{hoursPerWeek}" type="number" class="form-control w-auto" placeholder="1 - 50 hours">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Weekly working hours</label>
+                                        <input th:field="*{hoursPerWeek}" type="number" class="form-control w-auto" placeholder="1 - 50 hours">
+                                    </div>
+                        </form>
 
-    <p> LOGIN SUCCESFULL </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" col text-center" style="padding-top: 2rem">
+        <button class="btn btn-primary btn-lg submit_button" type="submit" onclick="submitForms()">Continue</button>
+    </div>
+</div>
 </div>
 </body>
 </html>
