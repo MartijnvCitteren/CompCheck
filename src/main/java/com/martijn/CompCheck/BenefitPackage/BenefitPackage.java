@@ -10,18 +10,18 @@ import lombok.NoArgsConstructor;
 @Table(name= "benefitpackage", schema = "public")
 public class BenefitPackage {
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
     @Column(name = "salary")
-    private Double salaryMonthly;
+    private Float salaryMonthly;
 
     @Column(name = "work_hours_weekly")
     private Integer hoursPerWeek;
 
     @Column(name = "fixed_bonus_yearly")
-    private Double fixedYearlyBonus;
+    private Float fixedYearlyBonus;
 
     @Column(name = "pto_hours_fixed_yearly")
     private Integer obligatoryPtoHoursPerYear;
@@ -30,13 +30,13 @@ public class BenefitPackage {
     private Integer sellablePtoHoursPerYear;
 
     @Column(name = "pension_employer_contribution")
-    private Double employerPensionContribution;
+    private Float employerPensionContribution;
 
     @Column(name = "pension_employee_contribution")
-    private Double applicantPensionContribution;
+    private Float applicantPensionContribution;
 
     @Column(name = "gross_salary_yearly")
-    private Double grossSalaryYearly;
+    private Float grossSalaryYearly;
 
     @Column(name = "caoid")
     private Integer caoId;
@@ -55,11 +55,11 @@ public class BenefitPackage {
         this.id = id;
     }
 
-    public Double getSalaryMonthly() {
+    public Float getSalaryMonthly() {
         return salaryMonthly;
     }
 
-    public void setSalaryMonthly(Double salaryMonthly) {
+    public void setSalaryMonthly(Float salaryMonthly) {
         this.salaryMonthly = salaryMonthly;
     }
 
@@ -71,11 +71,11 @@ public class BenefitPackage {
         this.hoursPerWeek = hoursPerWeek;
     }
 
-    public Double getFixedYearlyBonus() {
+    public Float getFixedYearlyBonus() {
         return fixedYearlyBonus;
     }
 
-    public void setFixedYearlyBonus(Double fixedYearlyBonus) {
+    public void setFixedYearlyBonus(Float fixedYearlyBonus) {
         this.fixedYearlyBonus = fixedYearlyBonus;
     }
 
@@ -95,27 +95,27 @@ public class BenefitPackage {
         this.sellablePtoHoursPerYear = sellablePtoHoursPerYear;
     }
 
-    public Double getEmployerPensionContribution() {
+    public Float getEmployerPensionContribution() {
         return employerPensionContribution;
     }
 
-    public void setEmployerPensionContribution(Double employerPensionContribution) {
+    public void setEmployerPensionContribution(Float employerPensionContribution) {
         this.employerPensionContribution = employerPensionContribution;
     }
 
-    public Double getApplicantPensionContribution() {
+    public Float getApplicantPensionContribution() {
         return applicantPensionContribution;
     }
 
-    public void setApplicantPensionContribution(Double applicantPensionContribution) {
+    public void setApplicantPensionContribution(Float applicantPensionContribution) {
         this.applicantPensionContribution = applicantPensionContribution;
     }
 
-    public Double getGrossSalaryYearly() {
+    public Float getGrossSalaryYearly() {
         return grossSalaryYearly;
     }
 
-    public void setGrossSalaryYearly(Double grossSalaryYearly) {
+    public void setGrossSalaryYearly(Float grossSalaryYearly) {
         this.grossSalaryYearly = grossSalaryYearly;
     }
 
@@ -141,5 +141,23 @@ public class BenefitPackage {
 
     public void setAppUserId(Integer appUserId) {
         this.appUserId = appUserId;
+    }
+
+    @Override
+    public String toString() {
+        return "BenefitPackage{" +
+                "id=" + id +
+                ", salaryMonthly=" + salaryMonthly +
+                ", hoursPerWeek=" + hoursPerWeek +
+                ", fixedYearlyBonus=" + fixedYearlyBonus +
+                ", obligatoryPtoHoursPerYear=" + obligatoryPtoHoursPerYear +
+                ", sellablePtoHoursPerYear=" + sellablePtoHoursPerYear +
+                ", employerPensionContribution=" + employerPensionContribution +
+                ", applicantPensionContribution=" + applicantPensionContribution +
+                ", grossSalaryYearly=" + grossSalaryYearly +
+                ", caoId=" + caoId +
+                ", companyId=" + companyId +
+                ", appUserId=" + appUserId +
+                '}';
     }
 }

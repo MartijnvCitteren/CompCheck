@@ -44,34 +44,31 @@ public class BenefitPackageController {
         String companyName = company.getName();
 
         if (companyName.contains("**Unknown**")) {
-            return "redirect:/user/register";
-            // redirect to company info needs to be submitted + benefit package
+            return "redirect:/index/error";
+            // TO DO: redirect to Applied CAO-page?
         }
+        else {
             Optional<Company> optionalCompany = companyService.findCompanyByName(companyName);
-            if(optionalCompany.isPresent()){
+            if (optionalCompany.isPresent()) {
                 int companyId = optionalCompany.get().getId();
                 System.out.println("Company ID:" + companyId);
                 System.out.println(optionalCompany.get().getName() + optionalCompany.get().getCao_id());
                 Optional<Cao> optionalCao = caoService.findCaoById(optionalCompany.get().getCao_id());
                 System.out.println(optionalCao.toString());
 
-                if(optionalCao.isPresent()){
-                    int caoId = optionalCao.get().getId();
+                if (optionalCao.isPresent()) {
                     redirectAttributes.addAttribute("companyId", companyId);
                     System.out.println("I run till redirect!");
                     return "redirect:/index/packagecao";
-                    // redirect to page where only salary and fte needs to be filler
                 }
-                else {
-                    return "redirect:/user/login";
-                    // redirect to all package info needs to be submitted
+                else{
+                    return "error";
+                    // TO DO: fill all information
                 }
             }
-            else{
-                return "redirect:/user/login";
-                // redirect to company info needs to be submitted + benefit package
-            }
-        //return "redirect:/user/login";
+            return "error";
+        }
+
     }
 
     @GetMapping("/packagecao")
@@ -82,9 +79,15 @@ public class BenefitPackageController {
     }
 
     @PostMapping("packagecao")
-    public String retrieveBenefitPackage(@RequestParam int companyId, @ModelAttribute BenefitPackage benefitPackage, Model model){
+    public String packageWithCao(@RequestParam int companyId, @ModelAttribute BenefitPackage benefitPackage, Model model){
         model.addAttribute("benefitPackageForm", new BenefitPackage());
-        Double salary = benefitPackage.getSalaryMonthly();
+        Float salary = benefitPackage.getSalaryMonthly();
+        Integer weeklyHours = benefitPackage.getHoursPerWeek();
+
+        BenefitPackage myBenefitPack = benefitPackageService.generateBenefitPackageWithCao(companyId, salary, weeklyHours);
+        //benefitPackageService.saveBenefitPackage(myBenefitPack);
+
+        System.out.println(myBenefitPack.toString());
 
 
         return "redirect:/index";

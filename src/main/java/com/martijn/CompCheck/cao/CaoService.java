@@ -28,6 +28,15 @@ public class CaoService {
 //        }
     }
 
+    public Cao GiveCaoById(Integer id) {
+        Optional<Cao> optionalCao = caoRepository.findCaoById(id);
+        if (optionalCao.isPresent()) {
+            return optionalCao.get();
+        } else {
+            throw new IllegalStateException("cao ID doesn't exists");
+        }
+    }
+
 
 
 

@@ -23,4 +23,14 @@ public class CompanyService {
     public Optional<Company> findCompanyByName(String name){
         return companyRepository.findByName(name);
     }
+
+    public int giveCaoId(int companyId){
+        Optional<Company> optionalCompany = companyRepository.findById(companyId);
+        if(optionalCompany.isPresent()){
+            return optionalCompany.get().getCao_id();
+        }
+        else{
+            throw new RuntimeException("Comapny doesn't exist");
+        }
+    }
 }
