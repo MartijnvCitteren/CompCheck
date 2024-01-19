@@ -1,11 +1,15 @@
-body{
-    height: 100%;
-    min-height: 100%;
-}
-
 .navbarNavColor{
     background-color:#033860;
     --navbar-text-color: #ffffff;
+}
+
+#page-container{
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap{
+    padding-bottom: 1rem;
 }
 
 .my_footer{
@@ -14,11 +18,11 @@ body{
 }
 
 #footer{
-    clear: both;
-    position: relative;
+    position: absolute;
     bottom: 0;
     width: 100%;
-    margin-top:4rem;
+    margin-top:1.5rem;
+
 }
 
 .purple_text{

@@ -14,18 +14,15 @@
 </head>
 <body>
 <!-- header  -->
-<div th:replace="~{layouts/headerDefault::header}"></div>
-
-<!-- content -->
-<div layout:fragment="content">
-    <p>Replace this with content</p>
+<div id="page-container">
+    <div id =content-wrap>
+        <div th:replace="~{layouts/headerDefault::header}"></div>
+            <!-- content -->
+        <div layout:fragment="content"> <p>Replace this with content</p></div>
+    </div>
 </div>
-
-
 <!-- footer -->
-<div th:replace="~{layouts/footerDefault :: footer}"></div>
-
-
+<div id="footer" th:replace="~{layouts/footerDefault :: footer}"></div>
 </body>
 
 </html>
