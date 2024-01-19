@@ -19,8 +19,9 @@ public class TaxServices {
     private final float BONUS_TAX_RATE = .51f;
 
 
-    public Float netRegularIncome(float grossYearly){
-        float originalGrossSalary = grossYearly;
+    public Float netRegularIncome(float grossYearlySalaryWithoutPensionDeduction, float pension){
+        float originalGrossSalary = grossYearlySalaryWithoutPensionDeduction;
+        float grossYearly = grossYearlySalaryWithoutPensionDeduction - pension;
         float totalTax = 0.00f;
 
         if (grossYearly > THRESHOLD_HIGHEST_RATE) {

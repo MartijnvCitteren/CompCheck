@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,7 +52,7 @@ public class BenefitPackageService {
         Integer obligatoryPtoHoursPerYear = (int)Math.floor(partimePercentage * (caoBenefits.getPtoHoursTotal() - caoBenefits.getPtoHoursSellable()));
         Integer sellablePtoHoursPerYear = (int) Math.floor(partimePercentage * caoBenefits.getPtoHoursSellable());
         Float pensionEmployerContribution = euro((grossSalaryYearly * caoBenefits.getPensionTotalPercentage()) * caoBenefits.getPensionEmployerPercentage());
-        Float pensionEmployeeContribution = euro((grossSalaryYearly *  caoBenefits.getPensionTotalPercentage() - 1))*(caoBenefits.getPensionEmployerPercentage()-1);
+        Float pensionEmployeeContribution = euro((grossSalaryYearly *  caoBenefits.getPensionTotalPercentage()) - pensionEmployerContribution);
 
         BenefitPackage myBenefitPackage = new BenefitPackage(null,
                                                                 monthlySalary,

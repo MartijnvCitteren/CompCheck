@@ -5,7 +5,12 @@ import com.martijn.CompCheck.BenefitPackage.BenefitPackageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 @Controller
 public class CompensationController {
@@ -18,11 +23,20 @@ public class CompensationController {
         this.benefitPackageService = benefitPackageService;
     }
 
-
     @GetMapping("/result")
     public String showResult(@RequestParam int idBenefit, Model model){
+        NumberFormat format = NumberFormat.getCurrencyInstance();
         BenefitPackage myPackage = benefitPackageService.findBenefitPackageById(idBenefit);
-        System.out.println(myPackage.toString());
+        Compensation compensation = compensationService.makeCompensationCheck(myPackage);
+        compensationService.saveCompensation(compensation);
+
+        float yearlySalary = compensation.getSalaryGrossYearly();
+        String salary = format.format(yearlySalary);
+
+        System.out.println(format.format(yearlySalary));
+
+
+        model.addAttribute("salary", salary);
 
         return "result";
     }
