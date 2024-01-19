@@ -79,18 +79,19 @@ public class BenefitPackageController {
     }
 
     @PostMapping("packagecao")
-    public String packageWithCao(@RequestParam int companyId, @ModelAttribute BenefitPackage benefitPackage, Model model){
+    public String packageWithCao(@RequestParam int companyId, @ModelAttribute BenefitPackage benefitPackage, Model model, RedirectAttributes redirectAttributes){
         model.addAttribute("benefitPackageForm", new BenefitPackage());
         Float salary = benefitPackage.getSalaryMonthly();
         Integer weeklyHours = benefitPackage.getHoursPerWeek();
 
         BenefitPackage myBenefitPack = benefitPackageService.generateBenefitPackageWithCao(companyId, salary, weeklyHours);
-        //benefitPackageService.saveBenefitPackage(myBenefitPack);
+        benefitPackageService.saveBenefitPackage(myBenefitPack);
+        System.out.println("ID in controller:  "+ myBenefitPack.getId());
+        int idBenefit = myBenefitPack.getId();
 
-        System.out.println(myBenefitPack.toString());
+        redirectAttributes.addAttribute("idBenefit", idBenefit);
 
-
-        return "redirect:/index";
+        return "redirect:/result";
     }
 
 }

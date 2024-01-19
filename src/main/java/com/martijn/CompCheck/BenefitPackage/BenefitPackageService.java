@@ -4,6 +4,7 @@ import com.martijn.CompCheck.cao.Cao;
 import com.martijn.CompCheck.cao.CaoService;
 import com.martijn.CompCheck.company.CompanyService;
 import com.martijn.CompCheck.user.AppUserRepository;
+import jakarta.persistence.GeneratedValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,19 +54,28 @@ public class BenefitPackageService {
         Float pensionEmployeeContribution = euro((grossSalaryYearly *  caoBenefits.getPensionTotalPercentage() - 1))*(caoBenefits.getPensionEmployerPercentage()-1);
 
         BenefitPackage myBenefitPackage = new BenefitPackage(null,
-                monthlySalary,
-                weeklyHours,
-                fixedYearlyBonus,
-                obligatoryPtoHoursPerYear,
-                sellablePtoHoursPerYear,
-                pensionEmployerContribution,
-                pensionEmployeeContribution,
-                grossSalaryYearly,
-                caoBenefits.getId(),
-                companyId,
-                1);
+                                                                monthlySalary,
+                                                                weeklyHours,
+                                                                fixedYearlyBonus,
+                                                                obligatoryPtoHoursPerYear,
+                                                                sellablePtoHoursPerYear,
+                                                                pensionEmployerContribution,
+                                                                pensionEmployeeContribution,
+                                                                grossSalaryYearly,
+                                                                caoId,
+                                                                companyId,
+                                                                1);
 
         return myBenefitPackage;
+    }
 
+    public BenefitPackage findBenefitPackageById(int id){
+        Optional <BenefitPackage> optionalBenefitPackage = benefitPackageRepository.findById(id);
+        if(optionalBenefitPackage.isPresent()){
+            return optionalBenefitPackage.get();
+        }
+        else{
+            throw new RuntimeException("No benefitpackage found!");
+        }
     }
 }
