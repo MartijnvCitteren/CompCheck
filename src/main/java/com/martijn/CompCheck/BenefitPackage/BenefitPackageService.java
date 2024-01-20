@@ -39,7 +39,7 @@ public class BenefitPackageService {
         benefitPackageRepository.save(benefitPackage);
     }
 
-    public BenefitPackage generateBenefitPackageWithCao(Integer companyId, Float monthlySalary, Integer weeklyHours){
+    public BenefitPackage generateBenefitPackageWithCao(int userId, Integer companyId, Float monthlySalary, Integer weeklyHours){
 
         int caoId = companyService.giveCaoId(companyId);
         System.out.println("cao ID: " + caoId);
@@ -54,6 +54,8 @@ public class BenefitPackageService {
         Float pensionEmployerContribution = euro((grossSalaryYearly * caoBenefits.getPensionTotalPercentage()) * caoBenefits.getPensionEmployerPercentage());
         Float pensionEmployeeContribution = euro((grossSalaryYearly *  caoBenefits.getPensionTotalPercentage()) - pensionEmployerContribution);
 
+
+
         BenefitPackage myBenefitPackage = new BenefitPackage(null,
                                                                 monthlySalary,
                                                                 weeklyHours,
@@ -65,7 +67,7 @@ public class BenefitPackageService {
                                                                 grossSalaryYearly,
                                                                 caoId,
                                                                 companyId,
-                                                                1);
+                                                                userId);
 
         return myBenefitPackage;
     }
