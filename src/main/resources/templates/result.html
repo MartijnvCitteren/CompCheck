@@ -3,11 +3,28 @@
       layout:decorate="~{layouts/layoutDefault}" xmlns="http://www.w3.org/1999/html">
 <body>
   <div layout:fragment="content">
-    <div th:object="${salary}">
-      <p th:text="'your nett salary will be: ' + ${salary}"></p>
+      <div class="container-fluid extra-padding">
+        <div class="card">
+          <h2 class="card-header purple_text">Your job offfer</h2>
+          <div class="card-body">
+            <h5 class="card-title">COMPANY Name</h5>
+            <p class="card-text" th:text="'your nett salary will be: ' + ${salary}"></p>
+          </div>
+        </div>
+        <div style="padding-top: 3rem"></div>
+        <div class="card">
+          <h2 class="card-header purple_text">The normalized job offer</h2>
+          <div class="card-body">
+            <h5 class="card-title">What you get</h5>
+            <p class="card-text" th:text="'your nett salary will be: ' + ${salary}"></p>
+            <a href="#" class="btn btn-secondary">All your comparisons</a>
+          </div>
+        </div>
+
     </div>
 
 
-  </div>
+
+</div>
 </body>
 </html>

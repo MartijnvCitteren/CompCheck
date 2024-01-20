@@ -127,4 +127,15 @@ public class AppUserService {
         return "";
     }
 
+    public String findUserIdAsStringByEmail(String email){
+        Optional<AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
+        if (optionalAppUser.isPresent()) {
+            AppUser appUserToLogin = optionalAppUser.get();
+            return appUserToLogin.getId().toString();
+        }
+        else {
+            throw new RuntimeException("user doesn't excist");
+        }
+    }
+
 }

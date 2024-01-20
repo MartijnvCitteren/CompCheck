@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layoutDefault}">
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <h1> Compensations overview </h1>
+        </div>
+        <table class="table table-striped table bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>Comparison date</th>
+                <th>Company</th>
+                <th>Min PTO days</th>
+                <th>Total Pension Deposit</th>
+                <th>Yearly gross Salary </th>
+                <th>Yearly net Salary </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="compensations: ${compensations}">
+                <td th:text = "${compensations.getCalculationDate()}"></td>
+                <td th:text = "${compensations.getCompanyID()}"></td>
+                <td th:text = "${compensations.getPto()}"></td>
+                <td th:text = "${compensations.getPensionDeposit()}"></td>
+                <td th:text = "${compensations.getSalaryGrossYearly()}"></td>
+                <td th:text = "${compensations.getSalaryNettYearly()}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

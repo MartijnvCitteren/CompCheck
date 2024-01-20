@@ -4,15 +4,16 @@ import com.martijn.CompCheck.BenefitPackage.BenefitPackage;
 import com.martijn.CompCheck.BenefitPackage.BenefitPackageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Controller
+@RequestMapping("/index")
 public class CompensationController {
 
     private final CompensationService compensationService;
@@ -24,7 +25,7 @@ public class CompensationController {
     }
 
     @GetMapping("/result")
-    public String showResult(@RequestParam int idBenefit, Model model){
+    public String showResult( @RequestParam int idBenefit, Model model){
         NumberFormat format = NumberFormat.getCurrencyInstance();
         BenefitPackage myPackage = benefitPackageService.findBenefitPackageById(idBenefit);
         Compensation compensation = compensationService.makeCompensationCheck(myPackage);
@@ -39,6 +40,14 @@ public class CompensationController {
         model.addAttribute("salary", salary);
 
         return "result";
+    }
+
+    @GetMapping("/my-comparisons")
+    public String showAllComparisons(Model model, @CookieValue("userID") String id){
+        List<Compensation> compensations = compensationService.getAllComparisonsByUserId(Integer.parseInt(id));
+        model.addAttribute("compensations", compensations);
+
+        return "comparison-overview";
     }
 
 }

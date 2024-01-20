@@ -5,6 +5,7 @@ import com.martijn.CompCheck.tax.TaxServices;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static com.martijn.CompCheck.BenefitPackage.BenefitPackageService.euro;
 
@@ -85,5 +86,9 @@ public class CompensationService {
     }
     public float convertFloatToFT(int weeklyHoursBenefitPackage, float toConvert){
         return (toConvert / weeklyHoursBenefitPackage) * FULL_TIME_HOURS;
+    }
+
+    public List<Compensation> getAllComparisonsByUserId(int id){
+        return compensationRepository.findAllByUserID(id);
     }
 }
