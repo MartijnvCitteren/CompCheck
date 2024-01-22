@@ -23,11 +23,12 @@ import java.util.Optional;
 public class BenefitPackageController {
 
     private final BenefitPackageService benefitPackageService;
+
     private final CompanyService companyService;
     private  final CaoService caoService;
 
     @Autowired
-    public  BenefitPackageController(BenefitPackageService benefitPackageService, CompanyService companyService, CaoService caoService) {
+    public  BenefitPackageController(BenefitPackageService benefitPackageService, CaoService caoService, CompanyService companyService) {
         this.benefitPackageService = benefitPackageService;
         this.companyService = companyService;
         this.caoService = caoService;

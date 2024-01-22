@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layoutDefault}">
+<body>
+<div layout:fragment="content">
+  <div class="container-fluid extra-padding">
+    <div class="row">
+      <div class="col-6">
+        <div style="padding-top: 3rem">
+        <img src="/image/profile.png" alt="profile picture" class="img-thumbnail mx-auto d-block" style="max-width: 20rem">
+        </div>
+      </div>
+      <div class="col-6" style="text-align: left; padding-top: 2rem">
+        <h2 class="purple_text" th:text="${appUser.firstName} + ' ' + ${appUser.lastName}"></h2>
+
+
+      </div>
+      </div>
+    <div class="row">
+      <div class="col-12">
+        <p>update button</p>
+        <p>dele button</p>
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+</div>
+</body>
+</html>

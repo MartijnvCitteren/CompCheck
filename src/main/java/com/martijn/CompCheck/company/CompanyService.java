@@ -43,4 +43,8 @@ public class CompanyService {
             throw new RuntimeException("Company not found");
         }
     }
+
+    public List<Company> getAllCompanies(){
+        return companyRepository.findAll();
+    }
 }

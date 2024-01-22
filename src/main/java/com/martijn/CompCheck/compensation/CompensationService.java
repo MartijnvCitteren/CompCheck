@@ -91,4 +91,5 @@ public class CompensationService {
     public List<Compensation> getAllComparisonsByUserId(int id){
         return compensationRepository.findAllByUserID(id);
     }
+
 }

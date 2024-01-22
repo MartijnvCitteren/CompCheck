@@ -138,4 +138,15 @@ public class AppUserService {
         }
     }
 
+    public AppUser giveUserById(int id){
+       Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
+       if (optionalAppUser.isPresent()){
+           return optionalAppUser.get();
+       }
+       else{
+           throw new RuntimeException("No user found");
+       }
+
+    }
+
 }

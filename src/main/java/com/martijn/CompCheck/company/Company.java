@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 @Data
 @AllArgsConstructor
@@ -26,7 +27,8 @@ public class Company {
     private String size;
 
     @Column(name = "cao_id")
-    private int cao_id;
+    @Nullable
+    private Integer cao_id;
 
     public int getId() {
         return id;
@@ -60,11 +62,12 @@ public class Company {
         this.size = size;
     }
 
-    public int getCao_id() {
+    public Integer getCao_id() {
         return cao_id;
     }
 
-    public void setCao_id(int cao_id) {
+    @Nullable
+    public void setCao_id(Integer cao_id) {
         this.cao_id = cao_id;
     }
 }

@@ -62,3 +62,8 @@
     text-align: center;
     min-height: 100vh;
 }
+
+.table-format-compCheck{
+    color: white;
+    background-color: #7d80da ;
+}

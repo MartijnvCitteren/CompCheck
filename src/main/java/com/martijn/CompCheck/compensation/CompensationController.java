@@ -2,14 +2,18 @@ package com.martijn.CompCheck.compensation;
 
 import com.martijn.CompCheck.BenefitPackage.BenefitPackage;
 import com.martijn.CompCheck.BenefitPackage.BenefitPackageService;
+import com.martijn.CompCheck.company.Company;
 import com.martijn.CompCheck.company.CompanyService;
 import com.martijn.CompCheck.tax.TaxServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.Format;
 import java.text.NumberFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -76,7 +80,10 @@ public class CompensationController {
     @GetMapping("/my-comparisons")
     public String showAllComparisons(Model model, @CookieValue("userID") String id){
         List<Compensation> compensations = compensationService.getAllComparisonsByUserId(Integer.parseInt(id));
-        model.addAttribute("compensations", compensations);
+        List<Company> companies = companyService.getAllCompanies();
+
+        model.addAttribute("compensations",compensations);
+        model.addAttribute("companies", companies);
 
         return "comparison-overview";
     }

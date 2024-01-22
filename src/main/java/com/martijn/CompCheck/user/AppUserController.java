@@ -43,6 +43,7 @@ public class AppUserController {
     public String registerUser(@ModelAttribute AppUser appUser, Model model) {
         model.addAttribute("registrationForm", new AppUser());
         appUser.setCompanyId(1); // functionality to create a new company isn't there yet
+
         appUserService.addNewUser(appUser);
         return "redirect:/user/login";
     }
@@ -70,7 +71,13 @@ public class AppUserController {
         else {
             return "redirect:/user/login";
         }
+    }
 
+    @GetMapping("/profile")
+    public String showProfile(Model model, @CookieValue("userID") String id){
+        AppUser appUser = appUserService.giveUserById(Integer.parseInt(id));
+        model.addAttribute("appUser", appUser);
+        return "profile";
     }
 
 }
