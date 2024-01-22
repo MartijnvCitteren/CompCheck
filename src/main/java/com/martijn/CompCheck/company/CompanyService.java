@@ -30,7 +30,17 @@ public class CompanyService {
             return optionalCompany.get().getCao_id();
         }
         else{
-            throw new RuntimeException("Comapny doesn't exist");
+            throw new RuntimeException("Company doesn't exist");
+        }
+    }
+
+    public Company findCompanyById(int id){
+        Optional <Company> optionalCompany = companyRepository.findById(id);
+        if(optionalCompany.isPresent()){
+            return optionalCompany.get();
+        }
+        else{
+            throw new RuntimeException("Company not found");
         }
     }
 }

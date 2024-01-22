@@ -6,18 +6,65 @@
       <div class="container-fluid extra-padding">
         <div class="card">
           <h2 class="card-header purple_text">Your job offfer</h2>
-          <div class="card-body">
-            <h5 class="card-title">COMPANY Name</h5>
-            <p class="card-text" th:text="'your nett salary will be: ' + ${salary}"></p>
-          </div>
+            <div class="card-body">
+              <h3 class="card-title" th:text="${companyName}"></h3>
+                <div class="card-text">
+                  <p th:text="'You just entered your compensation package for ' + ${companyName}
+                                    + ' located in ' + ${companyLocation}  + '. You shared the following information:'"></p>
+
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p><b>Weekly working hours:</b></p>
+                        <p><b>Gross yearly salary:</b></p>
+                        <p><b>Pto hours per year:</b></p>
+                        <p><b>Yearly pension savings:</b></p>
+                        <p><b>own yearly pension contribution:</b></p>
+                        <p><b>Yearly net salary expected:</b></p>
+
+                      </div>
+                      <div class="col-sm-3">
+                        <p th:text="${weeklyHoursBen}"></p>
+                        <p th:text="${grossYearlySalaryBens}"></p>
+                        <p th:text="${totalPtoDaysBen}"></p>
+                        <p th:text="${totalPensionBenS}"></p>
+                        <p th:text="${ownPensionContributionBenS}"></p>
+                        <p th:text="${netYearlySalaryBenS}"></p>
+                      </div>
+                    </div>
+
+                </div>
+              </div>
         </div>
+
+
+
         <div style="padding-top: 3rem"></div>
+
+
         <div class="card">
           <h2 class="card-header purple_text">The normalized job offer</h2>
           <div class="card-body">
             <h5 class="card-title">What you get</h5>
-            <p class="card-text" th:text="'your nett salary will be: ' + ${salary}"></p>
-            <a href="#" class="btn btn-secondary">All your comparisons</a>
+            <div class="card-text">
+              <p th:text="'To make comparing job offers easier we put in a standardized format. Below you find ' + ${companyName} + '\'s standardized format. This standardized format consists out of a 40-hour workweek and selling all your sellable pto hours. On the My comparisons page you can find all the comparisons you made.'"></p>
+
+              <a href="my-comparisons" class="btn btn-primary">Show all comparisons</a>
+
+              <div class="row" style="padding-top: 2rem">
+                <div class="col-sm-3">
+                  <p><b>Weekly working hours:</b></p>
+                  <p><b>Gross yearly salary:</b></p>
+                  <p><b>Pto hours per year:</b></p>
+                  <p><b>Yearly net salary expected:</b></p>
+
+                </div>
+                <div class="col-sm-3">
+                  <p>40</p>
+                  <p th:text="${grossSalaryYearlyComp}"></p>
+                  <p th:text="${ptoHoursComp}"></p>
+                  <p th:text="${netYearlySalaryComp}"></p>
+                </div>
+              </div>
           </div>
         </div>
 

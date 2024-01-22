@@ -53,7 +53,7 @@ public class CompensationService {
         float salaryGrossYearly = euro(totalYearlySalaryGrossBP);
         int pto = Math.round(ptoTotal - numPtoHoursToSell);
         float pensionDeposit = euro(totalPensionDeposit);
-        float salaryNettYearly = euro((taxServices.netRegularIncome(salaryYearGrossExclSoldPto,employeePensionDeposit)));
+        float salaryNettYearly = euro((taxServices.netRegularIncome(totalYearlySalaryGrossBP,employeePensionDeposit)));
         LocalDate calculationDate = LocalDate.now();
         int userId = benefitPackage.getAppUserId();
         int companyId = benefitPackage.getCompanyId();
