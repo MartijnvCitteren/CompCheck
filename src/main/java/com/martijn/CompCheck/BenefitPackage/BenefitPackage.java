@@ -138,22 +138,4 @@ public class BenefitPackage {
     public void setAppUserId(Integer appUserId) {
         this.appUserId = appUserId;
     }
-
-    @Override
-    public String toString() {
-        return "BenefitPackage{" +
-                "id=" + id +
-                ", salaryMonthly=" + salaryMonthly +
-                ", hoursPerWeek=" + hoursPerWeek +
-                ", fixedYearlyBonus=" + fixedYearlyBonus +
-                ", obligatoryPtoHoursPerYear=" + obligatoryPtoHoursPerYear +
-                ", sellablePtoHoursPerYear=" + sellablePtoHoursPerYear +
-                ", employerPensionContribution=" + employerPensionContribution +
-                ", applicantPensionContribution=" + applicantPensionContribution +
-                ", grossSalaryYearly=" + grossSalaryYearly +
-                ", caoId=" + caoId +
-                ", companyId=" + companyId +
-                ", appUserId=" + appUserId +
-                '}';
-    }
 }

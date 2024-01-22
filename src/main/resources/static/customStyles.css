@@ -3,56 +3,9 @@
     --navbar-text-color: #ffffff;
 }
 
-#page-container{
-    position: relative;
-    min-height: 100vh;
-}
-
-#content-wrap{
-    padding-bottom: 1rem;
-}
-
-.my_footer{
+.my_footer {
     background-color: #033860;
     --block-text-color: white;
-}
-
-#footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    margin-top:1.5rem;
-
-}
-
-.purple_text{
-    color: #7d80da;
-    font-weight:bold;
-}
-
-.btn-primary {
-    background-color: #7d80da;
-    border-color: #7d80da;
-}
-
-.width-date {
-    width: 13rem;
-}
-
-.btn-primary:hover {
-    background-color: #2D5C1E;
-    border-color: #7d80da;
-}
-
-.extra-padding {
-    padding-top: 1rem;
-    padding-left: 4.5rem;
-    padding-right: 4.5rem;
-}
-
-.outline {
-    outline: #033860;
-    border: #033860;
 }
 
 .center-screen{
@@ -63,7 +16,58 @@
     min-height: 100vh;
 }
 
+.extra-padding {
+    padding-top: 1rem;
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+}
+
+.btn-primary {
+    background-color: #7d80da;
+    border-color: #7d80da;
+}
+
+.btn-primary:hover {
+    background-color: #2D5C1E;
+    border-color: #7d80da;
+}
+
+.outline {
+    outline: #033860;
+    border: #033860;
+}
+
+.purple_text{
+    color: #7d80da;
+    font-weight:bold;
+}
+
+.width-date {
+    width: 13rem;
+}
+
 .table-format-compCheck{
     color: white;
     background-color: #7d80da ;
+}
+
+#page-container{
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap{
+    padding-bottom: 1rem;
+}
+
+
+#footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-top:1.5rem;
+}
+
+#delete:hover{
+    background-color: red;
 }

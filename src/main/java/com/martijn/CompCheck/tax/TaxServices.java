@@ -1,21 +1,15 @@
 package com.martijn.CompCheck.tax;
 
-import java.text.DecimalFormat;
-
 import static com.martijn.CompCheck.BenefitPackage.BenefitPackageService.euro;
 
 public class TaxServices {
 
-
     private final float THRESHOLD_HIGHEST_RATE = 64400.00f;
     private final float HIGHEST_TAX_RATE = 0.495f;
-
     private final float THRESHOLD_MID_RATE = 35475.00f;
     private final float MID_TAX_RATE = 0.375f;
-
     private final float THRESHOLD_LOW_RATE = 1500.00f;
     private final float LOW_TAX_RATE = .20f;
-
     private final float BONUS_TAX_RATE = .51f;
 
 
@@ -48,6 +42,5 @@ public class TaxServices {
     float netBonusIncome(float bonus){
         float netPercentage = 1 - BONUS_TAX_RATE;
         return euro(bonus * netPercentage);
-
     }
 }

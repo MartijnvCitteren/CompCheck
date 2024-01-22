@@ -18,8 +18,6 @@ public class CompensationService {
     private final CompensationRepository compensationRepository;
     private final TaxServices taxServices;
 
-
-
     public CompensationService(CompensationRepository compensationRepository){
         this.compensationRepository = compensationRepository;
         taxServices = new TaxServices();
@@ -58,10 +56,10 @@ public class CompensationService {
         int userId = benefitPackage.getAppUserId();
         int companyId = benefitPackage.getCompanyId();
 
-        Compensation compensation = new Compensation(null, salaryGrossYearly, pto, pensionDeposit, salaryNettYearly, calculationDate, userId, companyId);
+        Compensation compensation = new Compensation(null, salaryGrossYearly, pto, pensionDeposit,
+                                    salaryNettYearly, calculationDate, userId, companyId);
         return compensation;
     }
-
 
     public int getMaxSellablePtoHours(float obligatoryPtoDays, float sellablePtoHours){
         float totalPto = obligatoryPtoDays + sellablePtoHours;
@@ -73,7 +71,6 @@ public class CompensationService {
         else{
             return Math.round(sellablePtoHours - (MIN_PTO_HOURS - leftOverPto));
         }
-
     }
 
     public float sellPtOHoursConvertInEuro(float ptoHoursToSell,float MonthlySalary, int hoursPerWeek){
@@ -84,6 +81,7 @@ public class CompensationService {
     public int convertIntToFT(int weeklyHoursBenefitPackage, int toConvert){
         return (toConvert / weeklyHoursBenefitPackage) * FULL_TIME_HOURS;
     }
+
     public float convertFloatToFT(int weeklyHoursBenefitPackage, float toConvert){
         return (toConvert / weeklyHoursBenefitPackage) * FULL_TIME_HOURS;
     }
@@ -91,5 +89,4 @@ public class CompensationService {
     public List<Compensation> getAllComparisonsByUserId(int id){
         return compensationRepository.findAllByUserID(id);
     }
-
 }

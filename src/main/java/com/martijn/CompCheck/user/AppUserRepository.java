@@ -7,6 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface AppUserRepository extends JpaRepository <AppUser, Integer>{
-
     Optional<AppUser> findByEmailEqualsIgnoreCase(String email);
 }

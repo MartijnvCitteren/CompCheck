@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface CompensationRepository extends JpaRepository<Compensation, Integer> {
-
     List<Compensation> findAllByUserID(int userId);
 
 }

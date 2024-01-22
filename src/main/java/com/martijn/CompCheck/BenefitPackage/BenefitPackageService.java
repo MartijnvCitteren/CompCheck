@@ -18,7 +18,6 @@ import java.util.Optional;
 @Service
 public class BenefitPackageService {
 
-
     private static BenefitPackageRepository benefitPackageRepository;
     private static CaoService caoService;
     private static CompanyService companyService;
@@ -42,7 +41,6 @@ public class BenefitPackageService {
     public BenefitPackage generateBenefitPackageWithCao(int userId, Integer companyId, Float monthlySalary, Integer weeklyHours){
 
         int caoId = companyService.giveCaoId(companyId);
-        System.out.println("cao ID: " + caoId);
         Cao caoBenefits = caoService.GiveCaoById(companyService.giveCaoId(companyId));
         float partimePercentage = (float) weeklyHours / caoBenefits.getWeeklyWorkHours();
 

@@ -1,36 +1,21 @@
 package com.martijn.CompCheck.user;
 
-import com.martijn.CompCheck.company.CompanyService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.util.WebUtils;
 
-
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/user")
 public class AppUserController {
-
     private final AppUserService appUserService;
-
 
     @Autowired
     public AppUserController(AppUserService appUserService) {
         this.appUserService = appUserService;
-    }
-
-    @GetMapping("/allusers")
-    public String appUsers(Model model) {
-        model.addAttribute("appUser", appUserService.getAllUsers());
-        return "users";
     }
 
     @GetMapping("/register")
@@ -54,7 +39,6 @@ public class AppUserController {
         return "login";
     }
 
-    // TO DO
     @PutMapping( "/login")
     public String userLogin(@ModelAttribute("loginForm") AppUser appuser, Model model, HttpServletResponse response) {
         model.addAttribute("loginForm", new AppUser());
@@ -65,9 +49,9 @@ public class AppUserController {
             Cookie cookie = new Cookie("userID", userID);
             cookie.setPath("/");
             response.addCookie(cookie);
+            System.out.println("Cookie" + cookie.toString());
             return "redirect:/index";
         }
-
         else {
             return "redirect:/user/login";
         }
@@ -80,4 +64,22 @@ public class AppUserController {
         return "profile";
     }
 
+    @GetMapping("/profile/update")
+    public String update(Model model) {
+        model.addAttribute("updateForm", new AppUser());
+        return "update_profile";
+    }
+    @PostMapping("/profile/update")
+    public String updateUser(@ModelAttribute("updateForm") AppUser appUser, Model model, @CookieValue("userID") String id) {
+        model.addAttribute("updateForm", new AppUser());
+        appUser.setId(Integer.parseInt(id));
+        appUserService.updateUser(appUser);
+        return "redirect:/user/profile";
+    }
+
+    @GetMapping("/allusers")
+    public String appUsers(Model model) {
+        model.addAttribute("appUser", appUserService.getAllUsers());
+        return "users";
+    }
 }

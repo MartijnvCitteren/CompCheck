@@ -43,19 +43,19 @@ public class AppUserService {
         if (optionalAppUser.isPresent()) {
             AppUser oldUser = optionalAppUser.get();
 
-            if (appUser.getFirstName() != null) {
+            if (!appUser.getFirstName().isEmpty() && appUser.getFirstName() !=null) {
                 oldUser.setFirstName(appUser.getFirstName());
             }
-            if (appUser.getLastName() != null) {
+            if (!appUser.getLastName().isEmpty() && appUser.getLastName() != null) {
                 oldUser.setLastName(appUser.getLastName());
             }
-            if (appUser.getEmail() != null) {
+            if (!appUser.getEmail().isEmpty() && appUser.getEmail() != null) {
                 oldUser.setEmail(appUser.getEmail());
             }
             if (appUser.getDob() != null) {
                 oldUser.setDob(appUser.getDob());
             }
-            if (appUser.getCity() != null) {
+            if (!appUser.getCity().isEmpty() && appUser.getCity() != null) {
                 oldUser.setCity(appUser.getCity());
             }
             if (appUser.getYearsOfExperience() != null) {
@@ -67,26 +67,20 @@ public class AppUserService {
             if (appUser.getCompanyId() != null) {
                 oldUser.setCompanyId(appUser.getCompanyId());
             }
-            if (appUser.getPassword() != null) {
+            if (!appUser.getPassword().isEmpty() && appUser.getPassword() != null) {
                 oldUser.setPassword(createHash(appUser.getPassword()));
             }
+
             appUserRepository.save(oldUser);
+
         } else {
             throw new IllegalStateException("User with ID:" + appUser.getId() + " doesn't exists");
         }
     }
 
-    public void deleteUser(Integer id) {
-        boolean exists = appUserRepository.existsById(id);
-        if (exists) {
-            appUserRepository.deleteById(id);
-        } else {
-            throw new IllegalStateException("User with ID :" + id + " does not exists.");
-        }
-    }
-
     public Boolean loginUser(String email, String password){
         Optional<AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
+
         if (optionalAppUser.isPresent()) {
             AppUser appUserToLogin = optionalAppUser.get();
             String hashOfPassword = createHash(password);
@@ -103,8 +97,6 @@ public class AppUserService {
         }
 
     }
-
-
 
     public static String createHash(String password) {
         try {
@@ -146,7 +138,5 @@ public class AppUserService {
        else{
            throw new RuntimeException("No user found");
        }
-
     }
-
 }

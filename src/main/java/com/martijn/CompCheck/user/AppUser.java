@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.Collection;
 
-//using lombok instead of writing all getters and setters.
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -126,21 +125,5 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "AppUser{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", dob=" + dob +
-                ", city='" + city + '\'' +
-                ", yearsOfExperience=" + yearsOfExperience +
-                ", salaryYearly=" + salaryYearly +
-                ", companyId=" + companyId +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

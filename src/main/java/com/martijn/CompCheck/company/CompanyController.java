@@ -6,14 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller(value = "/company-pages")
 public class CompanyController {
-
     private final CompanyService companyService;
-
 
     @Autowired
     public CompanyController (CompanyService companyService) {
         this.companyService = companyService;
     }
-
 
 }

@@ -5,28 +5,39 @@
 <div layout:fragment="content">
   <div class="container-fluid extra-padding">
     <div class="row">
-      <div class="col-6">
-        <div style="padding-top: 3rem">
-        <img src="/image/profile.png" alt="profile picture" class="img-thumbnail mx-auto d-block" style="max-width: 20rem">
-        </div>
+      <div class="col-3">
+        <div style="padding-top: 4rem"></div>
+          <img src="/image/profile.png" alt="profile picture" class="mx-auto d-block" style="max-width: 17rem">
       </div>
-      <div class="col-6" style="text-align: left; padding-top: 2rem">
-        <h2 class="purple_text" th:text="${appUser.firstName} + ' ' + ${appUser.lastName}"></h2>
 
-
+      <div class="col-6" style="padding-top: 3rem">
+        <h2 class="purple_text" style="text-align: left" th:text="${appUser.firstName} + ' ' + ${appUser.lastName}"></h2>
+        <div class="container">
+          <div class="row">
+            <div class="col-4" style="padding-top: 2rem">
+              <p>E-mail:</p>
+              <p>City:</p>
+              <p>Date of birth:</p>
+              <p>Years of work experience:</p>
+            </div>
+            <div class="col-3" style="padding-top: 2rem">
+              <p th:text="${appUser.getEmail()}"></p>
+              <p th:text="${appUser.getCity()}"></p>
+              <p th:text="${#temporals.format(appUser.getDob(),'dd-MMM-yyyy')}"></p>
+              <p th:text="*{appUser.getYearsOfExperience() != null}? *{appUser.getYearsOfExperience()} : 'Unknown'"></p>
+            </div>
+        </div>
       </div>
       </div>
     <div class="row">
-      <div class="col-12">
-        <p>update button</p>
-        <p>dele button</p>
+      <div class="col-3"></div>
+        <div class="col-6">
+          <div class="container">
+            <a href="profile/update" class="btn btn-primary btn-lg">Update profile</a>
+          </div>
       </div>
-
-
     </div>
-
-
-
+  </div>
   </div>
 </div>
 </body>

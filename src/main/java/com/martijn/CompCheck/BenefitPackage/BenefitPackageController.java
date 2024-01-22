@@ -23,7 +23,6 @@ import java.util.Optional;
 public class BenefitPackageController {
 
     private final BenefitPackageService benefitPackageService;
-
     private final CompanyService companyService;
     private  final CaoService caoService;
 
@@ -32,13 +31,10 @@ public class BenefitPackageController {
         this.benefitPackageService = benefitPackageService;
         this.companyService = companyService;
         this.caoService = caoService;
-
     }
 
     @GetMapping
     public String selectCompany(Model model) {
-//        Cookie id = WebUtils.getCookie(request,"userID");
-//        System.out.println("Cookie ID get = " + id.toString());
         model.addAttribute("companies", companyService.getAllCompanyNames());
         model.addAttribute("selectCompany", new Company());
         return "index";
@@ -46,8 +42,6 @@ public class BenefitPackageController {
 
     @PostMapping
     public String chooseCompanies(@ModelAttribute Company company, Model model, RedirectAttributes redirectAttributes, @CookieValue("userID") String id) {
-
-        System.out.println("Cookie ID post = " + id);
         model.addAttribute("selectCompany", new Company());
         String companyName = company.getName();
 
@@ -91,14 +85,11 @@ public class BenefitPackageController {
 
         BenefitPackage myBenefitPack = benefitPackageService.generateBenefitPackageWithCao(userId,companyId, salary, weeklyHours);
         benefitPackageService.saveBenefitPackage(myBenefitPack);
-        System.out.println(myBenefitPack.toString());
-        System.out.println("ID in controller:  "+ myBenefitPack.getId());
         int idBenefit = myBenefitPack.getId();
 
         redirectAttributes.addAttribute("idBenefit", idBenefit);
 
         return "redirect:/index/result";
     }
-
 }
 

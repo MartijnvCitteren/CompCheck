@@ -4,9 +4,9 @@
 <body>
 <div layout:fragment="content">
     <div class="container py-5 text-center">
-        <form th:action="register" th:method="post" th:object="${registrationForm}">
+        <form th:action="@{/user/profile/update}" th:method="post" th:object="${updateForm}">
             <div class="purple_text mb-4">
-                <h2>Create your account</h2>
+                <h2>Update your profile</h2>
             </div>
             <div class="mb-3">
                 <input th:field="*{firstName}" autocomplete="off" autofocus="" class="form-control mx-auto w-auto" placeholder="First name" type="text">
@@ -21,12 +21,15 @@
                 <input th:field="*{city}" autocomplete="off" class="form-control mx-auto w-auto" placeholder="City" type="text">
             </div>
             <div class="mb-3">
+                <input th:field="*{yearsOfExperience}" autocomplete="off" class="form-control mx-auto w-auto" placeholder="Years working experience" type="number">
+            </div>
+            <div class="mb-3">
                 <input th:field="*{email}" autocomplete="off" class="form-control mx-auto w-auto" placeholder="E-mail" type="text">
             </div>
             <div class="mb-3">
                 <input th:field="*{password}" autocomplete="off" class="form-control mx-auto w-auto" placeholder="Password" type="password">
             </div>
-            <button class="btn btn-primary submit_button" type="submit">Register</button>
+            <button class="btn btn-primary submit_button" type="submit">Update Profile</button>
         </form>
     </div>
 </div>
