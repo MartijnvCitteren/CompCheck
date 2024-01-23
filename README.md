@@ -2,7 +2,6 @@
 
 #### Video-demo:  https://www.youtube.com/watch?v=wkEuotQ7A6g
 
-
 ### Description
 This project is the final assignment of Harvards CS50X [Introduction to Computer Science course.](https://cs50.harvard.edu/x/2023/project/) The goal of this project is to take the learned programming skills out for a spin and develop my own piece of software.
 
