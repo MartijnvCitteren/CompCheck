@@ -1,7 +1,9 @@
 package com.martijn.CompCheck.service.appUser;
 
+import com.martijn.CompCheck.dto.AppUserDto;
+import com.martijn.CompCheck.model.AppUser;
 import com.martijn.CompCheck.repository.AppUserRepository;
-import com.martijn.CompCheck.service.tax.TaxServices;
+import com.martijn.CompCheck.service.tax.;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AppUserServiceImpl {
+public class AppUserServiceImpl implements AppUserService{
     private final AppUserRepository appUserRepository;
 
     @Autowired
@@ -19,12 +21,32 @@ public class AppUserServiceImpl {
         this.appUserRepository = appUserRepository;
     }
 
-    public List<TaxServices.AppUser> getAllUsers() {
+    public List<AppUser> getAllUsers() {
         return appUserRepository.findAll();
     }
 
-    public Optional<TaxServices.AppUser> getAppUserById(Integer id) {
-        Optional<TaxServices.AppUser> optionalAppUser = appUserRepository.findById(id);
+    @Override
+    public AppUserDto getUserById() {
+        return null;
+    }
+
+    @Override
+    public AppUserDto addNewUser() {
+        return null;
+    }
+
+    @Override
+    public AppUserDto updateUser() {
+        return null;
+    }
+
+    @Override
+    public void deleteUserById() {
+
+    }
+
+    public Optional<AppUser> getAppUserById(Integer id) {
+        Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
         if (optionalAppUser.isPresent()) {
             return optionalAppUser;
         }
@@ -33,16 +55,16 @@ public class AppUserServiceImpl {
         }
     }
 
-    public void addNewUser(TaxServices.AppUser appUser) {
+    public void addNewUser(AppUser appUser) {
         appUser.setPassword(createHash(appUser.getPassword()));
         appUserRepository.save(appUser);
     }
 
-    public void updateUser(TaxServices.AppUser appUser) {
+    public void updateUser(AppUser appUser) {
         int userId = appUser.getId();
-        Optional<TaxServices.AppUser> optionalAppUser = appUserRepository.findById(userId);
+        Optional<AppUser> optionalAppUser = appUserRepository.findById(userId);
         if (optionalAppUser.isPresent()) {
-            TaxServices.AppUser oldUser = optionalAppUser.get();
+            AppUser oldUser = optionalAppUser.get();
 
             if (!appUser.getFirstName().isEmpty() && appUser.getFirstName() !=null) {
                 oldUser.setFirstName(appUser.getFirstName());
@@ -80,10 +102,10 @@ public class AppUserServiceImpl {
     }
 
     public Boolean loginUser(String email, String password){
-        Optional<TaxServices.AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
+        Optional<AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
 
         if (optionalAppUser.isPresent()) {
-            TaxServices.AppUser appUserToLogin = optionalAppUser.get();
+            AppUser appUserToLogin = optionalAppUser.get();
             String hashOfPassword = createHash(password);
 
             if(hashOfPassword.equals(appUserToLogin.getPassword())) {
@@ -121,9 +143,9 @@ public class AppUserServiceImpl {
     }
 
     public String findUserIdAsStringByEmail(String email){
-        Optional<TaxServices.AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
+        Optional<AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
         if (optionalAppUser.isPresent()) {
-            TaxServices.AppUser appUserToLogin = optionalAppUser.get();
+            AppUser appUserToLogin = optionalAppUser.get();
             return appUserToLogin.getId().toString();
         }
         else {
@@ -131,8 +153,8 @@ public class AppUserServiceImpl {
         }
     }
 
-    public TaxServices.AppUser giveUserById(int id){
-       Optional<TaxServices.AppUser> optionalAppUser = appUserRepository.findById(id);
+    public AppUser giveUserById(int id){
+       Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
        if (optionalAppUser.isPresent()){
            return optionalAppUser.get();
        }
