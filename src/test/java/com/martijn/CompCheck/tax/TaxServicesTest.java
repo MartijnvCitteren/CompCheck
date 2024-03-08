@@ -1,6 +1,6 @@
 package com.martijn.CompCheck.tax;
 
-import com.martijn.CompCheck.service.TaxServices;
+import com.martijn.CompCheck.service.tax.TaxServices;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

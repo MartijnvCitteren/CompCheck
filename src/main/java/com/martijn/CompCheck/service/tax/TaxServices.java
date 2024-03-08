@@ -1,4 +1,4 @@
-package com.martijn.CompCheck.service;
+package com.martijn.CompCheck.service.tax;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-import static com.martijn.CompCheck.service.BenefitPackageService.euro;
+import static com.martijn.CompCheck.service.benefitPackage.BenefitPackageService.euro;
 
 public class TaxServices {
 

@@ -1,7 +1,7 @@
-package com.martijn.CompCheck.service;
+package com.martijn.CompCheck.service.appUser;
 
 import com.martijn.CompCheck.repository.AppUserRepository;
-import com.martijn.CompCheck.service.TaxServices;
+import com.martijn.CompCheck.service.tax.TaxServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AppUserService {
-
+public class AppUserServiceImpl {
     private final AppUserRepository appUserRepository;
 
     @Autowired
-    public AppUserService(AppUserRepository appUserRepository) {
+    public AppUserServiceImpl(AppUserRepository appUserRepository) {
         this.appUserRepository = appUserRepository;
     }
 

@@ -1,7 +1,7 @@
 package com.martijn.CompCheck.controller;
 
-import com.martijn.CompCheck.service.TaxServices;
-import com.martijn.CompCheck.service.AppUserService;
+import com.martijn.CompCheck.service.tax.TaxServices;
+import com.martijn.CompCheck.service.appUser.AppUserServiceImpl;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping(path="/user")
 public class AppUserController {
-    private final AppUserService appUserService;
+    private final AppUserServiceImpl appUserServiceImpl;
 
     @Autowired
-    public AppUserController(AppUserService appUserService) {
-        this.appUserService = appUserService;
+    public AppUserController(AppUserServiceImpl appUserServiceImpl) {
+        this.appUserServiceImpl = appUserServiceImpl;
     }
 
     @GetMapping("/register")
@@ -31,7 +31,7 @@ public class AppUserController {
         model.addAttribute("registrationForm", new TaxServices.AppUser());
         appUser.setCompanyId(1); // functionality to create a new company isn't there yet
 
-        appUserService.addNewUser(appUser);
+        appUserServiceImpl.addNewUser(appUser);
         return "redirect:/user/login";
     }
 
@@ -44,10 +44,10 @@ public class AppUserController {
     @PutMapping( "/login")
     public String userLogin(@ModelAttribute("loginForm") TaxServices.AppUser appuser, Model model, HttpServletResponse response) {
         model.addAttribute("loginForm", new TaxServices.AppUser());
-        boolean validLogin = appUserService.loginUser(appuser.getEmail(), appuser.getPassword());
+        boolean validLogin = appUserServiceImpl.loginUser(appuser.getEmail(), appuser.getPassword());
 
         if (validLogin){
-            String userID = appUserService.findUserIdAsStringByEmail(appuser.getEmail());
+            String userID = appUserServiceImpl.findUserIdAsStringByEmail(appuser.getEmail());
             Cookie cookie = new Cookie("userID", userID);
             cookie.setPath("/");
             response.addCookie(cookie);
@@ -61,7 +61,7 @@ public class AppUserController {
 
     @GetMapping("/profile")
     public String showProfile(Model model, @CookieValue("userID") String id){
-        TaxServices.AppUser appUser = appUserService.giveUserById(Integer.parseInt(id));
+        TaxServices.AppUser appUser = appUserServiceImpl.giveUserById(Integer.parseInt(id));
         model.addAttribute("appUser", appUser);
         return "profile";
     }
@@ -75,13 +75,13 @@ public class AppUserController {
     public String updateUser(@ModelAttribute("updateForm") TaxServices.AppUser appUser, Model model, @CookieValue("userID") String id) {
         model.addAttribute("updateForm", new TaxServices.AppUser());
         appUser.setId(Integer.parseInt(id));
-        appUserService.updateUser(appUser);
+        appUserServiceImpl.updateUser(appUser);
         return "redirect:/user/profile";
     }
 
     @GetMapping("/allusers")
     public String appUsers(Model model) {
-        model.addAttribute("appUser", appUserService.getAllUsers());
+        model.addAttribute("appUser", appUserServiceImpl.getAllUsers());
         return "users";
     }
 }

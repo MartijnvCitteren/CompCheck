@@ -1,4 +1,4 @@
-package com.martijn.CompCheck.service;
+package com.martijn.CompCheck.service.cao;
 
 import com.martijn.CompCheck.model.Cao;
 import com.martijn.CompCheck.repository.CaoRepository;

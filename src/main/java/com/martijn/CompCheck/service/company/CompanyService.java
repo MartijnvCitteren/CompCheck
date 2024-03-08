@@ -1,4 +1,4 @@
-package com.martijn.CompCheck.service;
+package com.martijn.CompCheck.service.company;
 
 import com.martijn.CompCheck.model.Company;
 import com.martijn.CompCheck.repository.CompanyRepository;

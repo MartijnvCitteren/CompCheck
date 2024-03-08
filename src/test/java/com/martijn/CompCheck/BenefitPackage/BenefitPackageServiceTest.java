@@ -1,6 +1,6 @@
 package com.martijn.CompCheck.BenefitPackage;
 
-import com.martijn.CompCheck.service.BenefitPackageService;
+import com.martijn.CompCheck.service.benefitPackage.BenefitPackageService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

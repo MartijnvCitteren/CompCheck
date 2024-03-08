@@ -1,12 +1,12 @@
 package com.martijn.CompCheck.controller;
 
-import com.martijn.CompCheck.service.CompensationService;
+import com.martijn.CompCheck.service.compensation.CompensationService;
 import com.martijn.CompCheck.model.BenefitPackage;
-import com.martijn.CompCheck.service.BenefitPackageService;
+import com.martijn.CompCheck.service.benefitPackage.BenefitPackageService;
 import com.martijn.CompCheck.model.Company;
-import com.martijn.CompCheck.service.CompanyService;
+import com.martijn.CompCheck.service.company.CompanyService;
 import com.martijn.CompCheck.model.Compensation;
-import com.martijn.CompCheck.service.TaxServices;
+import com.martijn.CompCheck.service.tax.TaxServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

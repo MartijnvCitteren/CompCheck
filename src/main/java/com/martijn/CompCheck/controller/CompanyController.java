@@ -1,6 +1,6 @@
 package com.martijn.CompCheck.controller;
 
-import com.martijn.CompCheck.service.CompanyService;
+import com.martijn.CompCheck.service.company.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

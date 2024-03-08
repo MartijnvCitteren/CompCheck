@@ -1,8 +1,9 @@
-package com.martijn.CompCheck.service;
+package com.martijn.CompCheck.service.compensation;
 
 import com.martijn.CompCheck.model.BenefitPackage;
 import com.martijn.CompCheck.model.Compensation;
 import com.martijn.CompCheck.repository.CompensationRepository;
+import com.martijn.CompCheck.service.tax.TaxServices;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.martijn.CompCheck.service.BenefitPackageService.euro;
+import static com.martijn.CompCheck.service.benefitPackage.BenefitPackageService.euro;
 
 @Service
 public class CompensationService {

@@ -1,10 +1,10 @@
 package com.martijn.CompCheck.controller;
 
-import com.martijn.CompCheck.service.BenefitPackageService;
+import com.martijn.CompCheck.service.benefitPackage.BenefitPackageService;
 import com.martijn.CompCheck.model.Cao;
-import com.martijn.CompCheck.service.CaoService;
+import com.martijn.CompCheck.service.cao.CaoService;
 import com.martijn.CompCheck.model.Company;
-import com.martijn.CompCheck.service.CompanyService;
+import com.martijn.CompCheck.service.company.CompanyService;
 import com.martijn.CompCheck.model.BenefitPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
