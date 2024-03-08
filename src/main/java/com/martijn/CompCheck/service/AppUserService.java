@@ -1,5 +1,7 @@
-package com.martijn.CompCheck.user;
+package com.martijn.CompCheck.service;
 
+import com.martijn.CompCheck.repository.AppUserRepository;
+import com.martijn.CompCheck.service.TaxServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +20,12 @@ public class AppUserService {
         this.appUserRepository = appUserRepository;
     }
 
-    public List<AppUser> getAllUsers() {
+    public List<TaxServices.AppUser> getAllUsers() {
         return appUserRepository.findAll();
     }
 
-    public Optional<AppUser> getAppUserById(Integer id) {
-        Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
+    public Optional<TaxServices.AppUser> getAppUserById(Integer id) {
+        Optional<TaxServices.AppUser> optionalAppUser = appUserRepository.findById(id);
         if (optionalAppUser.isPresent()) {
             return optionalAppUser;
         }
@@ -32,16 +34,16 @@ public class AppUserService {
         }
     }
 
-    public void addNewUser(AppUser appUser) {
+    public void addNewUser(TaxServices.AppUser appUser) {
         appUser.setPassword(createHash(appUser.getPassword()));
         appUserRepository.save(appUser);
     }
 
-    public void updateUser(AppUser appUser) {
+    public void updateUser(TaxServices.AppUser appUser) {
         int userId = appUser.getId();
-        Optional<AppUser> optionalAppUser = appUserRepository.findById(userId);
+        Optional<TaxServices.AppUser> optionalAppUser = appUserRepository.findById(userId);
         if (optionalAppUser.isPresent()) {
-            AppUser oldUser = optionalAppUser.get();
+            TaxServices.AppUser oldUser = optionalAppUser.get();
 
             if (!appUser.getFirstName().isEmpty() && appUser.getFirstName() !=null) {
                 oldUser.setFirstName(appUser.getFirstName());
@@ -79,10 +81,10 @@ public class AppUserService {
     }
 
     public Boolean loginUser(String email, String password){
-        Optional<AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
+        Optional<TaxServices.AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
 
         if (optionalAppUser.isPresent()) {
-            AppUser appUserToLogin = optionalAppUser.get();
+            TaxServices.AppUser appUserToLogin = optionalAppUser.get();
             String hashOfPassword = createHash(password);
 
             if(hashOfPassword.equals(appUserToLogin.getPassword())) {
@@ -120,9 +122,9 @@ public class AppUserService {
     }
 
     public String findUserIdAsStringByEmail(String email){
-        Optional<AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
+        Optional<TaxServices.AppUser> optionalAppUser = appUserRepository.findByEmailEqualsIgnoreCase(email);
         if (optionalAppUser.isPresent()) {
-            AppUser appUserToLogin = optionalAppUser.get();
+            TaxServices.AppUser appUserToLogin = optionalAppUser.get();
             return appUserToLogin.getId().toString();
         }
         else {
@@ -130,8 +132,8 @@ public class AppUserService {
         }
     }
 
-    public AppUser giveUserById(int id){
-       Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
+    public TaxServices.AppUser giveUserById(int id){
+       Optional<TaxServices.AppUser> optionalAppUser = appUserRepository.findById(id);
        if (optionalAppUser.isPresent()){
            return optionalAppUser.get();
        }

@@ -1,18 +1,11 @@
-package com.martijn.CompCheck.BenefitPackage;
+package com.martijn.CompCheck.service;
 
-import com.martijn.CompCheck.cao.Cao;
-import com.martijn.CompCheck.cao.CaoService;
-import com.martijn.CompCheck.company.CompanyService;
-import com.martijn.CompCheck.user.AppUserRepository;
-import jakarta.persistence.GeneratedValue;
+import com.martijn.CompCheck.model.Cao;
+import com.martijn.CompCheck.model.BenefitPackage;
+import com.martijn.CompCheck.repository.BenefitPackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 @Service

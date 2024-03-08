@@ -1,4 +1,4 @@
-package com.martijn.CompCheck.company;
+package com.martijn.CompCheck.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,22 +1,18 @@
-package com.martijn.CompCheck.compensation;
+package com.martijn.CompCheck.controller;
 
-import com.martijn.CompCheck.BenefitPackage.BenefitPackage;
-import com.martijn.CompCheck.BenefitPackage.BenefitPackageService;
-import com.martijn.CompCheck.company.Company;
-import com.martijn.CompCheck.company.CompanyService;
-import com.martijn.CompCheck.tax.TaxServices;
+import com.martijn.CompCheck.service.CompensationService;
+import com.martijn.CompCheck.model.BenefitPackage;
+import com.martijn.CompCheck.service.BenefitPackageService;
+import com.martijn.CompCheck.model.Company;
+import com.martijn.CompCheck.service.CompanyService;
+import com.martijn.CompCheck.model.Compensation;
+import com.martijn.CompCheck.service.TaxServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.Format;
 import java.text.NumberFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/index")

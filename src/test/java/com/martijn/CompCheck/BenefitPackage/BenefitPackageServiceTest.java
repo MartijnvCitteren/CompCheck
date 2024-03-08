@@ -1,10 +1,7 @@
 package com.martijn.CompCheck.BenefitPackage;
 
-import com.martijn.CompCheck.cao.CaoService;
-import com.martijn.CompCheck.company.CompanyService;
-import org.junit.jupiter.api.BeforeEach;
+import com.martijn.CompCheck.service.BenefitPackageService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 

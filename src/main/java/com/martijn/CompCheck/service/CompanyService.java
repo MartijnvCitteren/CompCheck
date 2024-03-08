@@ -1,5 +1,7 @@
-package com.martijn.CompCheck.company;
+package com.martijn.CompCheck.service;
 
+import com.martijn.CompCheck.model.Company;
+import com.martijn.CompCheck.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

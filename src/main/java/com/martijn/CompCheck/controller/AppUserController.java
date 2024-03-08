@@ -1,5 +1,7 @@
-package com.martijn.CompCheck.user;
+package com.martijn.CompCheck.controller;
 
+import com.martijn.CompCheck.service.TaxServices;
+import com.martijn.CompCheck.service.AppUserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,13 @@ public class AppUserController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        model.addAttribute("registrationForm", new AppUser());
+        model.addAttribute("registrationForm", new TaxServices.AppUser());
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute AppUser appUser, Model model) {
-        model.addAttribute("registrationForm", new AppUser());
+    public String registerUser(@ModelAttribute TaxServices.AppUser appUser, Model model) {
+        model.addAttribute("registrationForm", new TaxServices.AppUser());
         appUser.setCompanyId(1); // functionality to create a new company isn't there yet
 
         appUserService.addNewUser(appUser);
@@ -35,13 +37,13 @@ public class AppUserController {
 
     @GetMapping("/login")
     public String login(Model model) {
-        model.addAttribute("loginForm", new AppUser());
+        model.addAttribute("loginForm", new TaxServices.AppUser());
         return "login";
     }
 
     @PutMapping( "/login")
-    public String userLogin(@ModelAttribute("loginForm") AppUser appuser, Model model, HttpServletResponse response) {
-        model.addAttribute("loginForm", new AppUser());
+    public String userLogin(@ModelAttribute("loginForm") TaxServices.AppUser appuser, Model model, HttpServletResponse response) {
+        model.addAttribute("loginForm", new TaxServices.AppUser());
         boolean validLogin = appUserService.loginUser(appuser.getEmail(), appuser.getPassword());
 
         if (validLogin){
@@ -59,19 +61,19 @@ public class AppUserController {
 
     @GetMapping("/profile")
     public String showProfile(Model model, @CookieValue("userID") String id){
-        AppUser appUser = appUserService.giveUserById(Integer.parseInt(id));
+        TaxServices.AppUser appUser = appUserService.giveUserById(Integer.parseInt(id));
         model.addAttribute("appUser", appUser);
         return "profile";
     }
 
     @GetMapping("/profile/update")
     public String update(Model model) {
-        model.addAttribute("updateForm", new AppUser());
+        model.addAttribute("updateForm", new TaxServices.AppUser());
         return "update_profile";
     }
     @PostMapping("/profile/update")
-    public String updateUser(@ModelAttribute("updateForm") AppUser appUser, Model model, @CookieValue("userID") String id) {
-        model.addAttribute("updateForm", new AppUser());
+    public String updateUser(@ModelAttribute("updateForm") TaxServices.AppUser appUser, Model model, @CookieValue("userID") String id) {
+        model.addAttribute("updateForm", new TaxServices.AppUser());
         appUser.setId(Integer.parseInt(id));
         appUserService.updateUser(appUser);
         return "redirect:/user/profile";

@@ -1,8 +1,8 @@
-package com.martijn.CompCheck.company;
+package com.martijn.CompCheck.controller;
 
+import com.martijn.CompCheck.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller(value = "/company-pages")
 public class CompanyController {

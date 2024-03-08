@@ -1,5 +1,7 @@
-package com.martijn.CompCheck.cao;
+package com.martijn.CompCheck.service;
 
+import com.martijn.CompCheck.model.Cao;
+import com.martijn.CompCheck.repository.CaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,6 @@
-package com.martijn.CompCheck.company;
+package com.martijn.CompCheck.repository;
 
+import com.martijn.CompCheck.model.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

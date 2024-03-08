@@ -1,21 +1,17 @@
-package com.martijn.CompCheck.BenefitPackage;
+package com.martijn.CompCheck.controller;
 
-import com.martijn.CompCheck.cao.Cao;
-import com.martijn.CompCheck.cao.CaoService;
-import com.martijn.CompCheck.company.Company;
-import com.martijn.CompCheck.company.CompanyService;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
+import com.martijn.CompCheck.service.BenefitPackageService;
+import com.martijn.CompCheck.model.Cao;
+import com.martijn.CompCheck.service.CaoService;
+import com.martijn.CompCheck.model.Company;
+import com.martijn.CompCheck.service.CompanyService;
+import com.martijn.CompCheck.model.BenefitPackage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.util.WebUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
