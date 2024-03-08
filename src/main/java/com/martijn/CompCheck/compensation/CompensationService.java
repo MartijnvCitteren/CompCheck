@@ -2,6 +2,8 @@ package com.martijn.CompCheck.compensation;
 
 import com.martijn.CompCheck.BenefitPackage.BenefitPackage;
 import com.martijn.CompCheck.tax.TaxServices;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -87,6 +89,11 @@ public class CompensationService {
     }
 
     public List<Compensation> getAllComparisonsByUserId(int id){
-        return compensationRepository.findAllByUserID(id);
+        return compensationRepository.findAllById(id);
+    }
+
+    @Repository
+    public static interface CompenSationRepository extends JpaRepository<Compensation, Integer> {
+
     }
 }
